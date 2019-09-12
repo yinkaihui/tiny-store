@@ -1,5 +1,5 @@
 export const isFunction = (func) => {
-  return typeof func === 'function'
+  return typeof func === 'function';
 }
 
 export function isObject(obj) {
@@ -7,5 +7,5 @@ export function isObject(obj) {
 }
 
 export const isEmptyObject = (obj) => {
-  return isObject(obj) && Object.keys(obj).length === 0
+  return isObject(obj) && Object.keys(obj).length === 0;
 }
