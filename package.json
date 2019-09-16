@@ -1,18 +1,26 @@
 {
-  "name": "tiny-store",
+  "name": "tn-store",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
+  "module": "es/index.js",
   "scripts": {
-    "build": "rm -r lib/ & NODE_ENV=production webpack "
+    "build": "rm -r es/* lib/* & rollup -c rollup.config.js",
+    "eslint": "eslint src/* --fix"
   },
+  "files": [
+    "lib",
+    "es"
+  ],
   "author": "",
   "license": "ISC",
+  "peerDependencies": {
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
+  },
   "dependencies": {
     "create-react-context": "^0.3.0",
     "prop-types": "^15.7.2",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
     "shallowequal": "^1.1.0"
   },
   "devDependencies": {
@@ -20,9 +28,24 @@
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-env": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.6",
+    "babel-eslint": "^10.0.3",
+    "babel-preset-latest": "^6.24.1",
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
     "hoist-non-react-statics": "^3.3.0",
-    "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.8"
+    "rollup": "^1.21.3",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }

@@ -5,7 +5,7 @@ export default class TinyStore {
     this.events = [];
 
     this.state = {
-      ...props
+      ...props,
     };
   }
 
@@ -15,7 +15,7 @@ export default class TinyStore {
     }
   }
 
-  unsubscribe() {
+  unsubscribe(callback) {
     const index = this.events.indexOf(callback);
     if (index > -1) {
       this.events.splice(index, 1);
@@ -23,15 +23,17 @@ export default class TinyStore {
   }
 
   notify() {
-    this.events.forEach(event => {
-      isFunction(event) && event(this);
+    this.events.forEach((event) => {
+      if (isFunction(event)) {
+        event(this);
+      }
     });
   }
 
   setState(list) {
     this.state = {
       ...this.state,
-      ...list
+      ...list,
     };
     this.notify();
   }

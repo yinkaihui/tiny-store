@@ -1,13 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import createContext from 'create-react-context';
+import PropTypes from 'prop-types';
 
 export const TinyStoreContext = createContext();
 
 class Provider extends React.Component {
+  static propTypes = {
+    value: PropTypes.any,
+  }
+
   render() {
-    return <TinyStoreContext.Provider value={this.props.value}>
-      {this.props.children}
-    </TinyStoreContext.Provider>;
+    const { children, value } = this.props;
+    return (
+      <TinyStoreContext.Provider value={value}>
+        {children}
+      </TinyStoreContext.Provider>
+    );
   }
 }
 

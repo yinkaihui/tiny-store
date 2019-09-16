@@ -10,7 +10,7 @@ import { TinyStoreContext } from './provider';
 class Connect extends Component {
   static propTypes = {
     store: PropTypes.object,
-    hook: PropTypes.func
+    hook: PropTypes.func,
   };
 
   constructor(props) {
@@ -40,14 +40,14 @@ class Connect extends Component {
     return isObject(props) ? props : {};
   };
 
-  handleSubscribe = store => {
+  handleSubscribe = (store) => {
     this.setState(this.getComponentProps(store));
   };
 
   render() {
     return React.cloneElement(this.props.children, {
       ...this.state,
-      store: this.props.store
+      store: this.props.store,
     });
   }
 }
@@ -60,12 +60,12 @@ export default function (hook) {
       render() {
         return (
           <TinyStoreContext.Consumer>
-            {store => {
+            {(store) => {
               return (
                 <Connect store={store} hook={hook}>
                   <WrappedComponent {...this.props} />
                 </Connect>
-              );
+              )
             }}
           </TinyStoreContext.Consumer>
         );
